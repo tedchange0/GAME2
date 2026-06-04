@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>器官損害紀錄</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>關卡 2：器官損害紀錄</h1>
+      <button class="hint-btn" id="hintBtn" type="button">提示</button>
+    </header>
+
+    <section class="status" aria-label="任務狀態">
+      <div class="oxygen-track" aria-label="氧氣條">
+        <div class="oxygen-fill" id="oxygenFill"></div>
+      </div>
+      <div class="status-text">
+        <span><strong id="timerText">01:45</strong></span>
+        <span><strong id="foundText">0</strong>/5</span>
+      </div>
+    </section>
+
+    <section class="compare-stack" aria-label="健康與病變對比圖">
+      <article class="scan-card healthy">
+        <div class="card-head"><b>健康核心</b><span>O2 SAT 99% / FUNC NORMAL</span></div>
+        <div class="image-zone">
+          <svg viewBox="0 0 600 360" role="img" aria-label="健康生理圖">
+            <defs>
+              <radialGradient id="healthyLung" cx="50%" cy="42%" r="72%">
+                <stop offset="0%" stop-color="rgba(220,255,255,.44)" />
+                <stop offset="52%" stop-color="rgba(88,211,226,.24)" />
+                <stop offset="100%" stop-color="rgba(11,37,54,.1)" />
+              </radialGradient>
+              <filter id="softScan">
+                <feGaussianBlur stdDeviation=".35" />
+              </filter>
+            </defs>
+            <rect width="600" height="360" fill="rgba(7,17,31,.78)" />
+            <ellipse cx="300" cy="186" rx="204" ry="138" fill="rgba(130,220,235,.05)" />
+            <path d="M290 66 C238 72 178 100 150 158 C119 222 146 298 204 318 C246 332 269 301 274 250 C281 184 266 144 290 66Z" fill="url(#healthyLung)" stroke="rgba(164,246,255,.72)" stroke-width="3" />
+            <path d="M310 66 C362 72 422 100 450 158 C481 222 454 298 396 318 C354 332 331 301 326 250 C319 184 334 144 310 66Z" fill="url(#healthyLung)" stroke="rgba(164,246,255,.72)" stroke-width="3" />
+            <path d="M300 48 C290 86 290 122 300 150 M300 150 C274 174 258 203 248 246 M300 150 C326 174 342 203 352 246" fill="none" stroke="rgba(226,255,255,.78)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M262 164 C226 174 198 198 178 236 M256 198 C226 210 204 234 194 270 M338 164 C374 174 402 198 422 236 M344 198 C374 210 396 234 406 270" fill="none" stroke="rgba(196,250,255,.5)" stroke-width="3" stroke-linecap="round" filter="url(#softScan)" />
+            <path d="M182 138 C218 116 247 111 273 119 M165 186 C207 168 243 166 274 178 M167 238 C208 229 240 235 268 252 M418 138 C382 116 353 111 327 119 M435 186 C393 168 357 166 326 178 M433 238 C392 229 360 235 332 252" fill="none" stroke="rgba(164,246,255,.18)" stroke-width="2" stroke-linecap="round" />
+            <path d="M112 74 C142 50 194 50 226 76" fill="none" stroke="rgba(168,255,104,.54)" stroke-width="4" stroke-linecap="round" />
+            <path d="M456 82 C490 54 536 58 558 92" fill="none" stroke="rgba(168,255,104,.54)" stroke-width="4" stroke-linecap="round" />
+            <circle cx="120" cy="101" r="8" fill="rgba(223,255,231,.72)" />
+            <circle cx="555" cy="119" r="8" fill="rgba(223,255,231,.72)" />
+          </svg>
+        </div>
+      </article>
+
+      <article class="scan-card damaged">
+        <div class="card-head"><b>病變紀錄</b><span>TAR LEVEL HIGH / RISK ALERT</span></div>
+        <div class="image-zone" id="damagedZone">
+          <svg viewBox="0 0 600 360" role="img" aria-label="受菸毒侵蝕的病變紀錄">
+            <defs>
+              <radialGradient id="damagedLung" cx="50%" cy="42%" r="72%">
+                <stop offset="0%" stop-color="rgba(255,221,221,.28)" />
+                <stop offset="54%" stop-color="rgba(198,82,98,.2)" />
+                <stop offset="100%" stop-color="rgba(46,14,22,.12)" />
+              </radialGradient>
+              <filter id="softDisease">
+                <feGaussianBlur stdDeviation=".45" />
+              </filter>
+            </defs>
+            <rect width="600" height="360" fill="rgba(18,7,14,.78)" />
+            <ellipse cx="300" cy="186" rx="204" ry="138" fill="rgba(255,73,102,.045)" />
+            <path d="M290 66 C238 72 178 100 150 158 C119 222 146 298 204 318 C246 332 269 301 274 250 C281 184 266 144 290 66Z" fill="url(#damagedLung)" stroke="rgba(255,132,148,.58)" stroke-width="3" />
+            <path d="M310 66 C362 72 422 100 450 158 C481 222 454 298 396 318 C354 332 331 301 326 250 C319 184 334 144 310 66Z" fill="url(#damagedLung)" stroke="rgba(255,132,148,.58)" stroke-width="3" />
+            <path d="M300 48 C290 86 290 122 300 150 M300 150 C274 174 258 203 248 246 M300 150 C326 174 342 203 352 246" fill="none" stroke="rgba(255,205,208,.52)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M263 164 C229 174 202 198 181 235 M257 198 C227 210 207 234 197 270 M337 164 C371 174 399 198 419 236 M343 198 C371 210 392 234 402 270" fill="none" stroke="rgba(255,222,160,.34)" stroke-width="3.2" stroke-linecap="round" filter="url(#softDisease)" />
+            <path d="M182 138 C218 119 247 114 273 121 M165 186 C207 171 243 169 274 180 M167 238 C208 232 240 238 268 253 M418 138 C382 119 353 114 327 121 M435 186 C393 171 357 169 326 180 M433 238 C392 232 360 238 332 253" fill="none" stroke="rgba(255,180,190,.13)" stroke-width="2" stroke-linecap="round" />
+            <path d="M258 142 C236 168 226 197 231 234 M342 164 C371 184 383 218 379 250" fill="none" stroke="rgba(255,212,90,.42)" stroke-width="4.2" stroke-linecap="round" opacity=".64" />
+            <circle cx="218" cy="232" r="14" fill="rgba(70,38,30,.5)" stroke="rgba(255,212,90,.48)" stroke-width="2.4" />
+            <circle cx="394" cy="242" r="16" fill="rgba(16,12,16,.52)" stroke="rgba(255,212,90,.46)" stroke-width="2.5" />
+            <path d="M112 74 C142 56 194 58 226 82" fill="none" stroke="rgba(255,92,116,.5)" stroke-width="3.5" stroke-linecap="round" />
+            <path d="M456 82 C490 72 532 82 558 112" fill="none" stroke="rgba(255,92,116,.46)" stroke-width="3.5" stroke-linecap="round" />
+            <circle cx="130" cy="111" r="6" fill="rgba(255,73,102,.55)" />
+            <path d="M516 112 C532 104 548 108 560 122" fill="none" stroke="rgba(255,212,90,.46)" stroke-width="3" stroke-linecap="round" />
+            <circle cx="300" cy="72" r="24" fill="rgba(255,73,102,.065)" stroke="rgba(255,92,116,.52)" stroke-width="2.8" />
+            <path d="M286 72 C298 60 313 60 323 75" fill="none" stroke="rgba(255,212,90,.46)" stroke-width="3" stroke-linecap="round" />
+            <path d="M322 75 L333 65" stroke="rgba(255,92,116,.52)" stroke-width="3" stroke-linecap="round" />
+          </svg>
+
+          <button class="hotspot" style="left:43%; top:38%;" data-id="bronchitis" aria-label="慢性支氣管炎"></button>
+          <button class="hotspot" style="left:86%; top:31%;" data-id="bone" aria-label="齒槽骨萎縮"></button>
+          <button class="hotspot" style="left:51%; top:20%;" data-id="brain" aria-label="腦部血管阻塞或破裂"></button>
+          <button class="hotspot" style="left:22%; top:31%;" data-id="periodontal" aria-label="牙周病"></button>
+          <button class="hotspot" style="left:66%; top:67%;" data-id="emphysema" aria-label="肺氣腫"></button>
+          <div class="toast" id="toast"></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <section class="overlay show" id="startScreen">
+    <h2>O2 系統校準</h2>
+    <p>上方是健康生理圖，下方是病變紀錄。請在限時內點出下方 5 處被集團竄改與隱瞞的危害痕跡。</p>
+    <p>計時會在按下 START 後才開始。</p>
+    <button class="primary-btn" id="startBtn" type="button">START</button>
+  </section>
+
+  <section class="overlay" id="winScreen">
+    <h2>數據真相已解鎖</h2>
+    <p>你找出了慢性支氣管炎、齒槽骨萎縮、腦部血管阻塞或破裂、牙周病與肺氣腫等 5 處異狀。</p>
+    <div class="button-row">
+      <button class="download-btn" id="downloadBtn" type="button">下載數據真相</button>
+      <button class="primary-btn" data-retry type="button">再玩一次</button>
+    </div>
+  </section>
+
+  <section class="overlay" id="loseScreen">
+    <h2>氧氣條耗盡</h2>
+    <p>O2 系統暫時離線，重新校準後再找出集團隱瞞的病變紀錄。</p>
+    <button class="primary-btn" data-retry type="button">重新挑戰</button>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
